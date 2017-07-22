@@ -18,7 +18,6 @@ class LinScene {
         this.createBgm();
     }
 
-
     renderPages() {
         // 渲染页面
        // var page = new LinPage();

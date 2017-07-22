@@ -1,7 +1,7 @@
 var path = require('path');
 var argv = require('yargs').argv;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var cssFileName = `css/view.min.css`;
 var jsFileName = `view.min.js`;
 
@@ -17,7 +17,6 @@ if (sourcemap) {
 }
 var css = sourcemap ? 'css?sourceMap' : 'css';
 var sass = sourcemap ? 'sass?sourceMap' : 'sass';
-// var less = sourcemap ? 'less?sourceMap' : 'less'
 
 
 var buildDir = 'build/';
@@ -57,6 +56,10 @@ if (argv.compress) {
     argv.uglify = true;
 }
 var plugins = [
+    new CleanWebpackPlugin(['build/'], {
+        verbose: true,
+        dry: false
+    }),
     extractCss
 ];
 

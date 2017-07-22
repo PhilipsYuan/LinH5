@@ -2,7 +2,7 @@
     "name": "lin",
     "version": "0.0.1",
     "scripts": {
-        "view-dev": "webpack --config webpack.js"
+        "view-dev": "node_modules/.bin/webpack  --watch --devtool inline-source-map"
     },
     "devDependencies": {
         "alloyfinger": "^0.1.7",
