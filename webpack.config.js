@@ -2,6 +2,7 @@ var path = require('path');
 var argv = require('yargs').argv;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var htmlWebpackPlugin = require('html-webpack-plugin');
 var cssFileName = `css/view.min.css`;
 var jsFileName = `view.min.js`;
 
@@ -33,7 +34,7 @@ var loaders = [
         // removeAttributeQuotes=false 属性的引号不能去除
         // svg filter value
         loader: 'html?minimize=true&conservativeCollapse=false&minifyCSS=false&removeAttributeQuotes=false',
-        exclude: /src\/view\/index\.html/
+        exclude: /src\/index\.html/
     },
     {
         test: /\.css$/,
@@ -56,11 +57,12 @@ if (argv.compress) {
     argv.uglify = true;
 }
 var plugins = [
-    new CleanWebpackPlugin(['build/'], {
-        verbose: true,
-        dry: false
-    }),
-    extractCss
+    extractCss,
+    new htmlWebpackPlugin({
+        filename: 'index.html',
+        template: './src/index.html'
+
+    })
 ];
 
 if (argv.uglify) {

@@ -1,9 +1,0 @@
-class LinPage {
-    constructor() {
-
-    }
-
-    renderComps() {
-
-    }
-}

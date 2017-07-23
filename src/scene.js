@@ -1,14 +1,17 @@
-var LinPage = require('./page/page');
+var Page = require('./page');
 var LinBgm = require('./bgm');
 
 class LinScene {
     constructor(sceneJson) {
-        this.bgAudio = sceneJson.pdata.music.id;
-        this.main$div = $('#lin');
+        //  this.bgAudio = sceneJson.pdata.music.id;
+        //  this.main$div = $('#lin');
+        this.sceneJson = sceneJson;
+        this.pageList = [];
+        this.$ele = $('#lin');
     }
 
     renderScene() {
-        this.renderBgm();
+        // this.renderBgm();
         this.renderPages();
         // this.initPageScroll();
     }
@@ -19,8 +22,38 @@ class LinScene {
     }
 
     renderPages() {
-        // 渲染页面
-       // var page = new LinPage();
+        this.sceneJson.list.forEach((pageJson, index) => {
+            this.initPage(index);
+            this.renderPage(index);
+        });
+    }
+
+    /**
+     * 初始化 page
+     * @param index
+     * @returns {*}
+     */
+    initPage(index) {
+        var pageJson = this.sceneJson.list[index];
+
+        if (pageJson) {
+            let page = new Page(pageJson, this);
+            this.pageList[index] = page;
+            return page;
+        }
+        throw new Error(`Invalid Page Index: ${index}`);
+    }
+
+    /**
+     * 渲染 page
+     * @param index
+     */
+    renderPage(index) {
+        var linPage = this.pageList[index];
+        if (linPage) {
+            var $section = linPage.create$section();
+            this.$ele.append($section);
+        }
     }
 
     /**
