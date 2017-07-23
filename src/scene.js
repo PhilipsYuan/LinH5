@@ -68,7 +68,6 @@ class LinScene {
     /**
      * 创建bgm
      * @param json
-     * @returns {EqxBgm}
      */
     createBgm(json) {
         var bgAudio = json || this.bgAudio;

@@ -1,9 +1,14 @@
 require('./page.scss');
 var pageHtml = require('./tpl.html');
+var elementListDiv = require('./elementListDiv.html');
+var ELEMENT_TYPE = require('../const/element').ELEMENT_TYPE;
+var ELEMENT_MAP = require('../const/elementMap');
+var LinElement = require('../element');
 
 class Page {
     constructor(pageJson) {
-        this.pageJson =pageJson
+        this.pageJson =pageJson;
+        this.linELementList = [];
     }
 
     /**
@@ -13,46 +18,58 @@ class Page {
     create$section() {
         var {
             num, id,
-            elements: compJsonList = []
+            elements: elementJsonList = []
         } = this.pageJson;
 
         /**
          * section节点
          * @type {jQuery}
          */
-        this.$section = $(pageHtml);
+        this.$pageDiv = $(pageHtml);
+        this.$elementListDiv = $(elementListDiv);
+        this.$pageDiv.append(this.$elementListDiv);
 
-/*        compJsonList // 添加元素
-            .map((json) => {
-                json.name = this.getCompName(json);
-                return json;
-            })
-            .filter(({type}) => COMP_TYPE[type] !== 'EqxBackground' && COMP_TYPE[type] !== 'EqxGravity')
+        elementJsonList // 添加元素
+            .filter(({type}) => ELEMENT_TYPE[type] == 'LinText' || ELEMENT_TYPE[type] == 'LinImage')
             .sort(({css: {zIndex: aIndex}}, {css: {zIndex: bIndex}}) => {
                 return aIndex - bIndex;
             })
-            .map((compJson, i) => { // 重新定义 zIndex
-                compJson.num = i + 1;
-                compJson.css.zIndex = i + 1;
-                return compJson;
+            .map((elementJson, i) => { // 重新定义 zIndex
+                elementJson.num = i + 1;
+                elementJson.css.zIndex = i + 1;
+                return elementJson;
             })
-            .forEach((compJson) => {
-                var eqxComp = this.initEqxCompByJson(compJson);
-                this.renderEqxComp(eqxComp);
-            });*/
+            .forEach((elementJson) => {
+                console.log(elementJson);
+                var LinComp = this.initLinCompByJson(elementJson);
+                this.renderLinComp(LinComp);
+            });
 
-/*        // 非电脑端让ul居中显示
-        if (!isPc()) {
-            if (window.top === window) {
-                // 非iframe
-                this.setUlTopAndLeft();
-            } else {
-                // 嵌入iframe
-                this.setIframeUlTopAndLeft();
-            }
-        }*/
+        return this.$pageDiv;
+    }
 
-        return this.$section;
+    /**
+     * 根据组件Json，添加对应的实例（添加组件自己的方法，对应Html，属性）
+     */
+    initLinCompByJson(elementJson) {
+        var ClassName = ELEMENT_MAP[elementJson.type];
+        if(ClassName) {
+            var linComp = new ClassName(elementJson, this);
+            this.linELementList.push(linComp);
+            return linComp;
+        }
+    }
+
+    /**
+     * 渲染组件（根据组件的实例）
+     */
+    renderLinComp(linComp) {
+        if (linComp && linComp instanceof LinElement) {
+            var $li = linComp.$li;
+            $li = linComp.create$li();
+            this.$elementListDiv.append($li);
+            return $li;
+        }
     }
 }
 
