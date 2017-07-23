@@ -1,5 +1,6 @@
 var Page = require('./page');
 var LinBgm = require('./bgm');
+var PageScroll = require('./pageScroll');
 
 class LinScene {
     constructor(sceneJson) {
@@ -13,7 +14,7 @@ class LinScene {
     renderScene() {
         // this.renderBgm();
         this.renderPages();
-        // this.initPageScroll();
+        this.initPageScroll();
     }
 
     renderBgm() {
@@ -54,15 +55,16 @@ class LinScene {
             var $section = linPage.create$section();
             this.$ele.append($section);
         }
+        if(index === 0) {
+            linPage.show();
+        }
     }
 
     /**
      * 初始化翻页器
      */
     initPageScroll() {
-        if (!this.config.disablePageScroll) {
-            this.pageScroll = new PageScroll(this);
-        }
+        this.pageScroll = new PageScroll(this);
     }
 
     /**

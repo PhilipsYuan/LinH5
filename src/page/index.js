@@ -40,7 +40,6 @@ class Page {
                 return elementJson;
             })
             .forEach((elementJson) => {
-                console.log(elementJson);
                 var LinComp = this.initLinCompByJson(elementJson);
                 this.renderLinComp(LinComp);
             });
@@ -71,6 +70,15 @@ class Page {
             return $li;
         }
     }
+
+    show() {
+        this.$pageDiv.addClass('activePage');
+    }
+
+    hide() {
+        this.$pageDiv.removeClass('activePage')
+    }
+
 }
 
 module.exports = Page;
