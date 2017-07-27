@@ -40,7 +40,14 @@ var loaders = [
         test: /\.css$/,
         loader: extractCss.extract([css])
     },
-
+	{
+		test: /\.js$/,
+		exclude: /node_modules/,
+		loader: 'babel-loader',
+		query: {
+			presets: ['es2015']
+		}
+	},
     {
         test: /\.scss$/,
         loader: extractCss.extract([css, sass])
@@ -62,7 +69,12 @@ var plugins = [
         filename: 'index.html',
         template: './src/index.html'
 
-    })
+    }),
+	new webpack.optimize.UglifyJsPlugin({
+		compress: {
+			warnings: false
+		}
+	})
 ];
 
 if (argv.uglify) {
