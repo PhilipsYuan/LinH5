@@ -6,9 +6,17 @@ var ELEMENT_TYPE = {
     // 图片
     4: 'LinImage',
     //地图
-    m: "EqxMap",
+    m: "LinMap",
     //形状
-    h: "LinShape"
+    h: "LinShape",
+    8: "LinTelephone",
+    5: "LinInput",
+    501: "LinInput",
+    502: "LinInputPhone",
+    503: "LinInputEmail",
+    504: "LinInput",
+    6: "LinSubmitButton",
+    601: "LinSubmitButton",
 };
 
 
