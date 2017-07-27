@@ -1,0 +1,12 @@
+<div id="#{id}" ctype="#{type}" class="element comp_image editable-image">
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g>
+            <image width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#{src}" filter="url(##{filterId})" draggable="false"></image>
+            <defs>
+                <filter id="#{filterId}">
+                    <feColorMatrix class="saturation" color-interpolation-filters="sRGB" type="matrix" values="#{path}"></feColorMatrix>
+                </filter>
+            </defs>
+        </g>
+    </svg>
+</div>
