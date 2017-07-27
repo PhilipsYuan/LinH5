@@ -27,6 +27,8 @@ class PageScroll {
     }
 
     scrollStart (e) {
+        this.moveDistanceX = 0;
+        this.moveDistanceY = 0;
         var coord = this.getCoord(e);
         if (coord) {
             this.startX = coord.x;
@@ -43,14 +45,31 @@ class PageScroll {
     }
 
     scrollEnd (e) {
-        if(this.moveDistanceX < 0) {
+        if(this.moveDistanceX < -20) {
             this.activePage = this.getCurAndActive(true);
-        } else {
-            this.activePage = this.getCurAndActive();
+            this.currentPage.hide();
+            this.activePage.show();
+            this.currentPage = this.activePage;
         }
-        this.currentPage.hide();
-        this.activePage.show();
-        this.currentPage = this.activePage;
+        if(this.moveDistanceX > 20){
+            this.activePage = this.getCurAndActive();
+            this.currentPage.hide();
+            this.activePage.show();
+            this.currentPage = this.activePage;
+        }
+        if(this.moveDistanceY < -20) {
+            this.activePage = this.getCurAndActive(true);
+            this.currentPage.hide();
+            this.activePage.show();
+            this.currentPage = this.activePage;
+        }
+        if(this.moveDistanceY > 20){
+            this.activePage = this.getCurAndActive();
+            this.currentPage.hide();
+            this.activePage.show();
+            this.currentPage = this.activePage;
+        }
+
     }
 
     getCoord (e) {
