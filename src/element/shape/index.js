@@ -19,6 +19,15 @@ class LinShape extends LinElement {
             properties: {src, imgStyle, maskSrc, filter: {type: filterType} = {}}
         } = elementJson;
 
+        var {
+            id, type, content, sceneId, publishTime,
+            css: {fontSize, width, height, writingMode},
+            properties: {
+                anim = [],
+                items = [],
+            }
+        } = elementJson;
+
         // 判断图片是否有滤镜
         src = host + src;
         var $context = $(parse(shapeTpl, {id, type, src}));

@@ -8,8 +8,8 @@ class LinBgm {
 
 
     create$bgm () {
-        this.$bgmBtn.find('audio').attr('src', 'http://res3.maka.im/common/music/fugu/gudianhuiwei.mp3');
-        this.linScene.main$div.append(this.$bgmBtn);
+        this.$bgmBtn.find('audio').attr('src', 'images/869ba36d129d4e80bc7d0813792c58b3.mp3');
+        $("#lin").append(this.$bgmBtn);
         this.show();
     }
 
@@ -18,6 +18,7 @@ class LinBgm {
      */
     show() {
         this.$bgmBtn.show();
+        this.$bgmBtn.addClass("rotate");
     }
 
     /**
@@ -33,6 +34,14 @@ class LinBgm {
 
     stop() {
 
+    }
+
+    startRotate(){
+        this.$bgmBtn.addClass("rotate");
+    }
+
+    startRotate(){
+        this.$bgmBtn.removeClass("rotate");
     }
 }
 

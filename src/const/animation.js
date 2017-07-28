@@ -1,0 +1,41 @@
+var ANIMATION_TYPE = {
+    0: ["fadeIn"],
+    1: ["fadeInLeft", "fadeInDown", "fadeInRight", "fadeInUp"],
+    2: ["bounceInLeft", "bounceInDown", "bounceInRight", "bounceInUp"],
+    3: ["bounceIn"],
+    4: ["zoomIn"],
+    5: ["rubberBand"],
+    6: ["wobble"],
+    7: ["rotateIn"],
+    8: ["flip"],
+    9: ["swing"],
+    10: ["fadeOut"],
+    11: ["flipOutY"],
+    12: ["rollInRight", "rollInDown", "rollInLeft", "rollInUp"],
+    13: ["lightSpeedInRight", "lightSpeedInDown", "lightSpeedInLeft", "lightSpeedInUp"],
+    14: ["bounceOut"],
+    15: ["rollOutRight", "rollOutDown", "rollOutLeft", "rollOutUp"],
+    16: ["lightSpeedOutRight", "lightSpeedOutDown", "lightSpeedOutLeft", "lightSpeedOutUp"],
+    17: ["fadeOutRight", "fadeOutDown", "fadeOutLeft", "fadeOutUp"],
+    18: ["zoomOut"],
+    19: ["bounceOutRight", "bounceOutDown", "bounceOutLeft", "bounceOutUp"],
+    20: ["flipInY"],
+    21: ["tada"],
+    22: ["jello"],
+    23: ["flash"],
+    24: ["flipInX"],
+    25: ["flipOutX"],
+    26: ["twisterInDownRight", "twisterInDownDown", "twisterInDownLeft", "twisterInDownUp"],
+    27: ["puffIn"],
+    28: ["puffOut"],
+    29: ["slideDown"],
+    30: ["slideUp"],
+    31: ["twisterInUpRight", "twisterInUpDown", "twisterInUpLeft", "twisterInUpUp"],
+    32: ["hingeRight", "hingeLeft"],
+    particles: ["particles"],
+    typer: ["typer"]
+};
+
+module.exports = {
+    ANIMATION_TYPE
+}

@@ -2,6 +2,7 @@ require('./page.scss');
 var pageHtml = require('./tpl.html');
 var elementListDiv = require('./elementListDiv.html');
 var ELEMENT_TYPE = require('../const/element').ELEMENT_TYPE;
+var ANIMATION_TYPE = require('../const/animation').ANIMATION_TYPE;
 var ELEMENT_MAP = require('../const/elementMap');
 var LinElement = require('../element');
 
@@ -30,7 +31,7 @@ class Page {
         this.$pageDiv.append(this.$elementListDiv);
 
         elementJsonList // 添加元素
-            .filter(({type}) => ELEMENT_TYPE[type] == 'LinText' || ELEMENT_TYPE[type] == 'LinImage' || ELEMENT_TYPE[type] == 'LinShape')
+            .filter(({type}) => ELEMENT_TYPE[type] == 'LinText' || ELEMENT_TYPE[type] == 'LinImage' || ELEMENT_TYPE[type] == 'LinInput' || ELEMENT_TYPE[type] == 'LinSubmitButton' || ELEMENT_TYPE[type] == 'LinShape')
             .sort(({css: {zIndex: aIndex}}, {css: {zIndex: bIndex}}) => {
                 return aIndex - bIndex;
             })

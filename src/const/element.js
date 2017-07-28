@@ -12,13 +12,12 @@ var ELEMENT_TYPE = {
     8: "LinTelephone",
     5: "LinInput",
     501: "LinInput",
-    502: "LinInputPhone",
-    503: "LinInputEmail",
     504: "LinInput",
+    502: "LinInput",
+    503: "LinInput",
     6: "LinSubmitButton",
     601: "LinSubmitButton",
 };
-
 
 module.exports = {
     ELEMENT_TYPE

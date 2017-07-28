@@ -12,7 +12,7 @@ class LinScene {
     }
 
     renderScene() {
-        // this.renderBgm();
+        this.renderBgm();
         this.renderPages();
         this.initPageScroll();
     }
@@ -73,10 +73,10 @@ class LinScene {
      */
     createBgm(json) {
         var bgAudio = json || this.bgAudio;
-        if (bgAudio) {
+        // if (bgAudio) {
             this.bgm = new LinBgm(bgAudio, this);
             this.bgm.create$bgm();
-        }
+        // }
     }
 }
 
