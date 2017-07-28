@@ -30,7 +30,7 @@ class Page {
         this.$pageDiv.append(this.$elementListDiv);
 
         elementJsonList // 添加元素
-            .filter(({type}) => ELEMENT_TYPE[type] == 'LinText' || ELEMENT_TYPE[type] == 'LinImage')
+            .filter(({type}) => ELEMENT_TYPE[type] == 'LinText' || ELEMENT_TYPE[type] == 'LinImage' || ELEMENT_TYPE[type] == 'LinShape')
             .sort(({css: {zIndex: aIndex}}, {css: {zIndex: bIndex}}) => {
                 return aIndex - bIndex;
             })
