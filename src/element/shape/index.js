@@ -13,7 +13,9 @@ class LinShape extends LinElement {
         console.info("create shape");
 
         var elementJson = this.elementJson;
-        var host = 'http://res1.eqh5.com/';
+        // var host = 'http://res1.eqh5.com/';
+        var host = 'images/gghfoFU1/';
+        
         var {
             id, type,
             properties: {src, imgStyle, maskSrc, filter: {type: filterType} = {}}

@@ -72,7 +72,8 @@ class LinScene {
      * @param json
      */
     createBgm(json) {
-        var bgAudio = json || this.bgAudio;
+        // var bgAudio = json || this.bgAudio;
+        var bgAudio = 'images/869ba36d129d4e80bc7d0813792c58b3.mp3';
         // if (bgAudio) {
             this.bgm = new LinBgm(bgAudio, this);
             this.bgm.create$bgm();

@@ -4,11 +4,13 @@ class LinBgm {
     constructor(bgAudioJson, linScene) {
         this.$bgmBtn = $(bgmBtnHtml);
         this.linScene = linScene;
+        this.bgAudioJson = bgAudioJson;
+        this.$audio = this.$bgmBtn.find("audio")[0];
+        // this.bindEventListeners();
     }
 
-
     create$bgm () {
-        this.$bgmBtn.find('audio').attr('src', 'images/869ba36d129d4e80bc7d0813792c58b3.mp3');
+        this.$bgmBtn.find('audio').attr('src', this.bgAudioJson);
         $("#lin").append(this.$bgmBtn);
         this.show();
     }
@@ -19,6 +21,14 @@ class LinBgm {
     show() {
         this.$bgmBtn.show();
         this.$bgmBtn.addClass("rotate");
+    }
+
+    bindEventListeners () {
+        var touchStart = false;
+        this.$audio.on('click', (e) => {
+                // this.$bgmBtn.addClass("rotate");
+                this.$bgmBtn.toggleClass("rotate");
+            });
     }
 
     /**
