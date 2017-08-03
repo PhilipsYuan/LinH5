@@ -36,6 +36,79 @@ var ANIMATION_TYPE = {
     typer: ["typer"]
 };
 
+function startAnimation(eqxComp, config) {
+    var { maxCount, callback} = config;
+    var {$li, $boxDiv, $context, compJson} = eqxComp;
+    var animArr = compJson.properties.anim || [];
+
+    var index = -1;
+
+    doAnimation();
+
+    function doAnimation() {
+        index++;
+        if (index >= animArr.length) {
+            if (callback) {
+                callback();
+            }
+        } else {
+            var {type, direction, duration = 0.1, linear, count, countNum = 1, delay = 0} = animArr[index];
+
+            var timingFn = linear ? 'linear' : 'ease';
+            var animType = ANIMATION_TYPE[type];
+
+            if (!animType) {
+                return doAnimation();
+            }
+
+            var animName = animType[direction] || ANIMATION_TYPE[type][0];
+            var iterationCount = count ? 'infinite' : countNum;
+
+            if (maxCount) {
+                iterationCount = 1;
+            }
+
+            $boxDiv.css({
+                'animation-name': '',
+                'animation-duration': '',
+                'animation-timing-function': '',
+                'animation-delay': '',
+                'animation-iteration-count': ''
+            });
+
+            var animObj = {
+                'animation-name': animName,
+                'animation-duration': duration + 's',
+                'animation-timing-function': timingFn,
+                'animation-delay': delay + 's',
+                'animation-iteration-count': iterationCount,
+                'animation-direction': 'normal',
+                'animation-fill-mode': 'both',
+                // 'animation-play-state': 'running'
+            };
+
+            var animStr = Object.keys(animObj).map(key => animObj[key]).join(' ');
+            $boxDiv.css('animation', animStr);
+            $boxDiv.one('webkitAnimationEnd ' +
+                'mozAnimationEnd ' +
+                'MSAnimationEnd ' +
+                'oanimationend ' +
+                'animationend', function() {
+                index < animArr.length - 1 && $boxDiv.css({
+                    'animation-name': '',
+                    'animation-duration': '',
+                    'animation-timing-function': '',
+                    'animation-delay': '',
+                    'animation-iteration-count': ''
+                });
+                setTimeout(function() {
+                    doAnimation();
+                }, 0);
+            });
+        }
+    }
+}
+
 module.exports = {
     ANIMATION_TYPE
 }

@@ -12,7 +12,7 @@ class LinScene {
     }
 
     renderScene() {
-        this.renderBgm();
+       // this.renderBgm();
         this.renderPages();
         this.initPageScroll();
     }
