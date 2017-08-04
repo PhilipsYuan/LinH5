@@ -38,6 +38,9 @@ class PageScroll {
 
     scrollMove (e) {
         var coord = this.getCoord(e);
+        console.log(coord.x);
+        console.log(coord.y);
+        console.log(this.startX);
         if (coord) {
             this.moveDistanceX = coord.x - this.startX;
             this.moveDistanceY = coord.y - this.startY;

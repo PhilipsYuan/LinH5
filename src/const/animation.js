@@ -36,10 +36,10 @@ var ANIMATION_TYPE = {
     typer: ["typer"]
 };
 
-function startAnimation(eqxComp, config) {
-    var { maxCount, callback} = config;
-    var {$li, $boxDiv, $context, compJson} = eqxComp;
-    var animArr = compJson.properties.anim || [];
+function startAnimation(linElement, config) {
+    var maxCount = null;
+    var {$box1Div, $box2Div, $context, elementJson} = linElement;
+    var animArr = elementJson.properties.anim || [];
 
     var index = -1;
 
@@ -48,9 +48,6 @@ function startAnimation(eqxComp, config) {
     function doAnimation() {
         index++;
         if (index >= animArr.length) {
-            if (callback) {
-                callback();
-            }
         } else {
             var {type, direction, duration = 0.1, linear, count, countNum = 1, delay = 0} = animArr[index];
 
@@ -68,7 +65,7 @@ function startAnimation(eqxComp, config) {
                 iterationCount = 1;
             }
 
-            $boxDiv.css({
+            $box2Div.css({
                 'animation-name': '',
                 'animation-duration': '',
                 'animation-timing-function': '',
@@ -88,13 +85,13 @@ function startAnimation(eqxComp, config) {
             };
 
             var animStr = Object.keys(animObj).map(key => animObj[key]).join(' ');
-            $boxDiv.css('animation', animStr);
-            $boxDiv.one('webkitAnimationEnd ' +
+            $box2Div.css('animation', animStr);
+            $box2Div.one('webkitAnimationEnd ' +
                 'mozAnimationEnd ' +
                 'MSAnimationEnd ' +
                 'oanimationend ' +
                 'animationend', function() {
-                index < animArr.length - 1 && $boxDiv.css({
+                index < animArr.length - 1 && $box2Div.css({
                     'animation-name': '',
                     'animation-duration': '',
                     'animation-timing-function': '',
@@ -110,5 +107,5 @@ function startAnimation(eqxComp, config) {
 }
 
 module.exports = {
-    ANIMATION_TYPE
+    ANIMATION_TYPE, startAnimation
 }

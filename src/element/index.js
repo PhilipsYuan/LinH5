@@ -1,7 +1,7 @@
 require('./element.scss');
 var elementHtml = require('./element.tpl.html');
 var ANIMATION_TYPE = require('../const/animation').ANIMATION_TYPE;
-
+var animHelper = require('../const/animation');
 class LinElement {
     constructor(elementJson) {
         this.elementJson = elementJson;
@@ -92,6 +92,11 @@ class LinElement {
         this.$box2Div.append(this.$context);
 
         return this.$elementDiv1;
+    }
+
+    eleShow() {
+        animHelper.startAnimation(this);
+        if (this.$li && this.compJson.properties.anim && this.compJson.properties.anim.length) this.$li.css('display', 'block');
     }
 
     /**

@@ -74,6 +74,9 @@ class Page {
     }
 
     show() {
+        this.linELementList.forEach((ele) => {
+            ele.eleShow();
+        });
         this.$pageDiv.addClass('activePage');
     }
 
