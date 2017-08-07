@@ -69,12 +69,12 @@ var plugins = [
         filename: 'index.html',
         template: './src/index.html'
 
-    }),
-	new webpack.optimize.UglifyJsPlugin({
+    })
+/*	new webpack.optimize.UglifyJsPlugin({
 		compress: {
 			warnings: false
 		}
-	})
+	})*/
 ];
 
 if (argv.uglify) {
@@ -84,11 +84,11 @@ if (argv.uglify) {
         exclude: /(node_modules|bower_components\.js)/
     });
 
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
+/*    plugins.push(new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: true
         }
-    }));
+    }));*/
 }
 
 module.exports = {

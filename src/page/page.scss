@@ -102,6 +102,10 @@ body,html {
         background: #f3f3f3;
     }
     .activePage {
+        z-index: 2;
+        display: block
+    }
+    .currentPage {
         z-index: 1;
         display: block
     }

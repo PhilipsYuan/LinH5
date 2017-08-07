@@ -73,16 +73,29 @@ class Page {
         }
     }
 
-    show() {
+    active() {
         this.linELementList.forEach((ele) => {
             ele.eleShow();
         });
         this.$pageDiv.addClass('activePage');
     }
 
-    hide() {
+    deActive() {
         this.$pageDiv.removeClass('activePage')
     }
+
+    show() {
+        this.linELementList.forEach((ele) => {
+            ele.eleShow();
+        });
+        this.$pageDiv.addClass('currentPage');
+    }
+
+    hide() {
+        this.$pageDiv.removeClass('currentPage');
+    }
+
+
 
 }
 
