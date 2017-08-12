@@ -21,6 +21,12 @@
             min-height: 1px;
             min-width: 1px;
             position:absolute;
+            .box1 {
+                overflow: hidden;
+            }
+            * {
+                box-sizing: border-box;
+            }
             .box2 {
                 line-height: inherit;
                 margin: 0;
