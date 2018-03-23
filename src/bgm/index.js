@@ -14,7 +14,6 @@ class LinBgm {
         $("#lin").append(this.$bgmBtn);
         this.show();
     }
-
     /**
      * 显示背景音乐按钮
      */
